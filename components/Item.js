@@ -6,20 +6,18 @@ import styles from './styles.js';
 export default class Item extends Component {
   render() {
     const { hit } = this.props;
-    const imgURI = `https://drcs9k8uelb9s.cloudfront.net/${hit.objectID}.png`;
     return (
-      <TouchableOpacity onPress={() => this.openLink(hit.url)}>
+      <TouchableOpacity onPress={() => this.openLink('http://www.google.com')}>
         <View style={styles.hit}>
-          <Image source={{uri: imgURI}} style={styles.illustration}/>
+          <Image source={{uri: hit.avatar}} style={styles.illustration}/>
           <View style={styles.hitContent}>
             <HighlightedText
               tag="**"
               style={styles.title}
               styles={{highlighted: styles.highlighted}}
               numberOfLines={2}>
-              {hit._highlightResult.title.value}
+              {hit._highlightResult.name.value}
             </HighlightedText>
-            <Text style={styles.url} numberOfLines={1}>{this.keepDomainName(hit.url)}</Text>
           </View>
         </View>
       </TouchableOpacity>

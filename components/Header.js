@@ -21,9 +21,11 @@ export default class Header extends Component {
     const helper = this.props.helper;
     const yesterday = Math.floor(Date.now() / 1000) - 3600 * 24;
 
-    helper.clearRefinements('created_at_i')
-          .addNumericRefinement('created_at_i', '>', yesterday)
-          .setQuery(q)
-          .search();
+    // helper.clearRefinements('created_at_i')
+    //       .addNumericRefinement('created_at_i', '>', yesterday)
+    //       .setQuery(q)
+    //       .search();
+
+    helper.setQuery(q).search();
   }
 }

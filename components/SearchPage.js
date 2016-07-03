@@ -10,7 +10,7 @@ import Results from './Results';
 import Header from './Header';
 import styles from './styles.js';
 
-const algoliasearch = require('algoliasearch/reactnative')('UJ5WYC0L7X', 'fa417a2309d484b364e87de9f82baa29');
+const algoliasearch = require('algoliasearch/reactnative')('DW545SZAC7', 'd160c658403dfbbff9a42687216e4c61');
 import AlgoliaSearchHelper from 'algoliasearch-helper';
 
 export default class SearchPage extends Component {
@@ -20,18 +20,22 @@ export default class SearchPage extends Component {
   }
 
   componentWillMount(){
-    const helper = this.helper = AlgoliaSearchHelper(algoliasearch, 'Item_production_ordered');
-    const yesterday = Math.floor(Date.now() / 1000) - 3600 * 24;
+    const helper = this.helper = AlgoliaSearchHelper(algoliasearch, 'users');
 
     helper.on('result', (res) => {
       this.setState({lastSearchResults: res});
     });
 
-    helper.addTag('story')
-          .setQueryParameter('highlightPreTag', '**')
-          .setQueryParameter('highlightPostTag', '**')
-          .addNumericRefinement('created_at_i', '>', yesterday)
-          .search();
+    // helper.addTag('story')
+          // .setQueryParameter('highlightPreTag', '**')
+          // .setQueryParameter('highlightPostTag', '**')
+    //       .addNumericRefinement('created_at_i', '>', yesterday)
+    //       .search();
+
+    helper
+      .setQueryParameter('highlightPreTag', '**')
+      .setQueryParameter('highlightPostTag', '**')
+      .search();
   }
 
   render() {
